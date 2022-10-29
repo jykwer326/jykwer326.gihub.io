@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 350px;
+  margin: 150px auto;
+  padding: 20px;
+  border: 1px solid rgb(157, 157, 157);
+}
+
+.banner{
+  text-align: center;
+  color: rgb(89, 89, 89);
+}
+
+.form-label{
+  color: gray;
+}
+
+.commonbut{
+  background-color: rgb(63, 63, 63);
+  border: 1px solid rgb(157, 157, 157);
+}
+
+.noid{
+  font-size: 9px;
+  margin-bottom: 5px;
+}
+
+.singup {
+  width: 151px;
+  height: 38px;
+}
+
+.cancel {
+  width: 151px;
+  height: 38px;
+}
+
+.butrow{
+  flex-direction: row;
+	justify-content: flex-start;
+}
+
+.text{
+  font-size: 11px;
+}
