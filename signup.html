@@ -19,39 +19,83 @@
         <div class="container">
             <h3 class="banner"><strong>회원가입</strong></h3>
             <p></p>
+
+            <!--이메일-->
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label text">아이디</label>
-                <input type="email" class="form-control id" aria-describedby="emailHelp">
+                <label for="exampleInputEmail1" class="form-label text">이메일</label>
+                <input type="email" placeholder="이메일 입력" class="form-control id">
+                <div id = "e_msg"></div>
             </div>
+
+            <!--비밀번호-->
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label text">비밀번호</label>
-                <input type="password" class="form-control pw">
+                <label for="input-pw" class="form-label text">비밀번호</label>
+                <input type="password" id = "input-pw" placeholder="비밀번호 입력" class="form-control pw" onblur="pwcheck();">
             </div>
+
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label text">비밀번호 확인</label>
-                <input type="password" class="form-control pw-check">
+                <label for="pw-check" class="form-label text">비밀번호 확인</label>
+                <input type="password" id = "pw-check" placeholder="비밀번호 확인" class="form-control pw-check" onblur="pwcheck();">
+                <div id = "pw_msg">
             </div>
+
+            <!--학번-->
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label text">학번</label>
-                <input type="password" class="form-control student-number">
+                <input type="text" maxlength='10' class="form-control student-number">
             </div>
+
+            <!--전공-->
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label text">전공</label>
-                <input type="password" class="form-control major">
+                <input type="text" class="form-control major">
             </div>
+
+            <!--전화번호-->
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label text" text>전화번호</label>
-                <input type="password" class="form-control phone-number">
+                <input type="text" id="input-pnum" oninput="autoHyphen(this)" maxlength="13" class="form-control phone-number">
+                <script type="text/javascript" src="pnum.js"></script>
             </div>
+
+            <!--가입/취소 버튼-->
             <div class="butrow">
                 <button type="button" class="btn btn-primary singup commonbut">가입하기</button>
-                <button type="button" class="btn btn-primary cancel commonbut">취소하기</button>
+                <button type="button" onclick="location.href='signin.html' " class="btn btn-primary cancel commonbut">취소하기</button>
             </div>
+
             <p></p>
             <p class="noid">아이디가 있으신가요?</p>
             <button type="button" class="btn btn-primary signin-link commonbut" onclick="location.href='signin.html' ">로그인 페이지로 이동</button>
+
         </div>
-    </form>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-</body>
+        </form>
+    <script>
+
+
+
+        /**`pw` 와 동일한 값인지 체크 */
+        function pwcheck() {
+            let pw = document.getElementById("input-pw").value;
+            let pwck = document.getElementById("pw-check").value;
+            let msg = document.getElementById('pw_msg');
+
+            if(pw!=pwck){
+                msg.innerHTML = "비밀번호가 일치하지 않습니다!";
+            }
+            else if (pwck==pw) {
+                msg.innerHTML = "비밀번호가 일치합니다!";
+            }
+        }
+
+        /** 01011112222 입력=> 010-1111-2222 로 자동 변환 */
+        const autoHyphen = (target) => {
+            target.value = target.value
+            .replace(/[^0-9]/g, '')
+            .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+        }
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    </body>
 </html>
