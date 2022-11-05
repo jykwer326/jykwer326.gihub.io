@@ -23,8 +23,8 @@
             <!--이메일-->
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label text">이메일</label>
-                <input type="email" placeholder="이메일 입력" class="form-control id">
-                <div id = "e_msg"></div>
+                <input type="text" id="email" placeholder="이메일 입력" class="form-control id">
+                <button onclick="check_email();" class="btn btn-primary commonbut signin-link">이메일 형식 확인</button>
             </div>
 
             <!--비밀번호-->
@@ -42,13 +42,13 @@
             <!--학번-->
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label text">학번</label>
-                <input type="text" maxlength='10' class="form-control student-number">
+                <input type="text" id="s_number" maxlength='10' class="form-control student-number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
             </div>
 
             <!--전공-->
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label text">전공</label>
-                <input type="text" class="form-control major">
+                <input type="text" id="major" class="form-control major">
             </div>
 
             <!--전화번호-->
@@ -72,7 +72,18 @@
         </form>
     <script>
 
+        /**이메일 정규 확인*/
+        function check_email() {
+            let input = document.getElementById("email").value
+            let email_format = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
 
+            if (email_format.test(input)) 
+                alert("올바른 이메일 형식입니다");
+            else {
+                alert("잘못된 이메일 형식입니다");
+                document.getElementById("email").value = "";
+            }
+        }
 
         /**`pw` 와 동일한 값인지 체크 */
         function pwcheck() {
@@ -87,6 +98,19 @@
                 msg.innerHTML = "비밀번호가 일치합니다!";
             }
         }
+
+        /**학번에 따른 학과 변경*/
+        let number = document.getElementById('s_number');
+        const mmmll = document.getElementById('major');
+        number.addEventListener('keydown', function (event) {
+
+            if(number.value.substring(4,7)=='136') {
+                console.log(typeof number.value.substring(4,7));
+                console.log(mmmll);
+                mmmll.value = "컴퓨터공학부";   //value로 넣어야 함!!
+            }
+
+        });
 
         /** 01011112222 입력=> 010-1111-2222 로 자동 변환 */
         const autoHyphen = (target) => {
